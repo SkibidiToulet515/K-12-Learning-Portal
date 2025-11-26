@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account - Enrichment Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/private-theme.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .auth-container {
+      background: var(--card);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      border: 2px solid var(--accent);
+    }
+    h1 {
+      font-size: 28px;
+      color: var(--text);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--text-light);
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--text);
+      transition: border 0.2s;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      margin-top: 10px;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
+    .toggle-btn {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 10px;
+    }
+    .toggle-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .error-message {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 15px;
+      text-align: center;
+      display: none;
+    }
+    .error-message.show {
+      display: block;
+    }
+    .file-input-wrapper {
+      margin-bottom: 20px;
+    }
+    .file-input-label {
+      display: block;
+      padding: 12px;
+      background: var(--bg);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--text-light);
+      transition: all 0.2s;
+    }
+    .file-input-label:hover {
+      border-color: var(--primary);
+    }
+    #profilePicInput {
+      display: none;
+    }
+    .logout-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .logout-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .logout-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <h1 id="authTitle">Login</h1>
+    <p class="subtitle" id="authSubtitle">Sign in to your account</p>
+    
+    <div id="authForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="file-input-wrapper" id="avatarWrapper" style="display:none;">
+        <label for="profilePicInput" class="file-input-label">Choose Avatar (.png, .jpg, .gif)</label>
+        <input type="file" id="profilePicInput" accept=".png,.jpg,.jpeg,.gif">
+      </div>
+      <button class="submit-btn" id="authSubmit">Login</button>
+      <button class="toggle-btn" id="authToggle">Create New Account</button>
+    </div>
+
+    <div class="error-message" id="errorMessage"></div>
+
+    <div class="logout-link">
+      <a href="/public/index.html">← Back to Public</a>
+    </div>
+  </div>
+
+  <script>
+    let isSignup = false;
+    const errorEl = document.getElementById('errorMessage');
+    const authForm = document.getElementById('authForm');
+    const authTitle = document.getElementById('authTitle');
+    const authSubtitle = document.getElementById('authSubtitle');
+    const authSubmit = document.getElementById('authSubmit');
+    const authToggle = document.getElementById('authToggle');
+    const avatarWrapper = document.getElementById('avatarWrapper');
+    const profilePicInput = document.getElementById('profilePicInput');
+
+    // Toggle between login and signup
+    authToggle.addEventListener('click', () => {
+      isSignup = !isSignup;
+      if (isSignup) {
+        authTitle.textContent = 'Create Account';
+        authSubtitle.textContent = 'Sign up for the enrichment hub';
+        authSubmit.textContent = 'Sign Up';
+        authToggle.textContent = 'Back to Login';
+        avatarWrapper.style.display = 'block';
+      } else {
+        authTitle.textContent = 'Login';
+        authSubtitle.textContent = 'Sign in to your account';
+        authSubmit.textContent = 'Login';
+        authToggle.textContent = 'Create New Account';
+        avatarWrapper.style.display = 'none';
+      }
+      errorEl.textContent = '';
+      errorEl.classList.remove('show');
+    });
+
+    // Handle form submission
+    authSubmit.addEventListener('click', async () => {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username || !password) {
+        errorEl.textContent = 'Username and password required';
+        errorEl.classList.add('show');
+        return;
+      }
+
+      try {
+        let endpoint = isSignup ? '/api/users/signup' : '/api/users/login';
+        let body = { username, password };
+        let contentType = 'application/json';
+
+        // For signup with avatar
+        if (isSignup && profilePicInput.files.length) {
+          const formData = new FormData();
+          formData.append('username', username);
+          formData.append('password', password);
+          formData.append('profilePicture', profilePicInput.files[0]);
+          body = formData;
+          contentType = null;
+        }
+
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: contentType === 'application/json' ? { 'Content-Type': 'application/json' } : undefined,
+          body: contentType === 'application/json' ? JSON.stringify(body) : body
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Authentication failed');
+        }
+
+        // Store real account session
+        sessionStorage.setItem('userToken', data.token);
+        sessionStorage.setItem('userId', data.userId);
+        sessionStorage.setItem('username', data.username);
+        sessionStorage.setItem('profilePicture', data.profilePicture || '');
+
+        // Redirect to dashboard
+        window.location.href = '/private/dashboard.html';
+      } catch (err) {
+        errorEl.textContent = err.message;
+        errorEl.classList.add('show');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Enrichment Access</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/private-theme.css">
+  <link rel="stylesheet" href="/css/private.css">
+  <script src="/js/private-auth.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1>Enrichment Hub</h1>
+      </div>
+      <div class="nav-right">
+        <select id="themeSelector" class="theme-selector">
+          <option value="ocean">Deep Ocean</option>
+          <option value="arcade">Neon Arcade</option>
+          <option value="candy">Cotton Candy</option>
+          <option value="eclipse">Solar Eclipse</option>
+          <option value="matrix">Cyber Matrix</option>
+          <option value="notebook">School Notebook</option>
+          <option value="gaming">Midnight Gaming</option>
+          <option value="pixel">Retro Pixel</option>
+          <option value="cloudy">Cloudy Day</option>
+          <option value="academia">Royal Academia</option>
+        </select>
+        <a href="https://forms.gle/sT7PrP6TDNzwirX38" target="_blank" class="help-btn" title="Send feedback or report an issue">❓ Help</a>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </nav>
+
+    <main class="dashboard">
+      <div class="dashboard-grid">
+        <a href="/private/games.html" class="dashboard-card games-card">
+          <span class="card-icon">🎮</span>
+          <h3>Games</h3>
+          <p>Play educational games and challenges</p>
+        </a>
+
+        <a href="/private/chat.html" class="dashboard-card chat-card">
+          <span class="card-icon">💬</span>
+          <h3>Chat & Community</h3>
+          <p>Discord-style chat, servers, and DMs</p>
+        </a>
+
+        <a href="/private/profile.html" class="dashboard-card profile-card">
+          <span class="card-icon">👤</span>
+          <h3>Profile</h3>
+          <p>Manage your profile and avatar</p>
+        </a>
+
+        <a href="/private/movies.html" class="dashboard-card movies-card">
+          <span class="card-icon">🎬</span>
+          <h3>Educational Media</h3>
+          <p>Watch educational videos and trailers</p>
+        </a>
+
+        <a href="/private/proxy.html" class="dashboard-card proxy-card">
+          <span class="card-icon">🌐</span>
+          <h3>Proxy Tools</h3>
+          <p>Additional proxy and utility tools</p>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/themes.js"></script>
+  <script>
+    // Check if user is logged in
+    if (!sessionStorage.getItem('userToken')) {
+      window.location.href = '/private/auth.html';
+    }
+
+    function logout() {
+      sessionStorage.clear();
+      window.location.href = '/public/index.html';
+    }
+  </script>
+</body>
+</html>
