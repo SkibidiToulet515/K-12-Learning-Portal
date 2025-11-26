@@ -6,7 +6,7 @@ const cors = require('cors');
 const path = require('path');
 
 // ==== DATABASE ====
-const db = require('./db');
+const db = require('./database');
 
 // ==== ROUTES ====
 const authRoutes = require('./routes/auth');
