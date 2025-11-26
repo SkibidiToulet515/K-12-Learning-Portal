@@ -1,0 +1,163 @@
+/* Deep Ocean Theme (default) */
+:root[data-theme="ocean"],
+:root {
+  --bg: #0a0e27;
+  --card: #1a1f3a;
+  --text: #e0e5f0;
+  --text-light: #a0a8b8;
+  --primary: #00a8e8;
+  --accent: #00d4ff;
+  --success: #00b894;
+  --danger: #ff6b6b;
+}
+
+/* Neon Arcade */
+:root[data-theme="arcade"] {
+  --bg: #0a0a0a;
+  --card: #1a1a1a;
+  --text: #ffffff;
+  --text-light: #cccccc;
+  --primary: #ff00ff;
+  --accent: #00ff00;
+  --success: #00ff00;
+  --danger: #ff0099;
+}
+
+/* Cotton Candy */
+:root[data-theme="candy"] {
+  --bg: #fff5f8;
+  --card: #ffffff;
+  --text: #333333;
+  --text-light: #666666;
+  --primary: #ff69b4;
+  --accent: #87ceeb;
+  --success: #ffb6c1;
+  --danger: #ff1493;
+}
+
+/* Solar Eclipse */
+:root[data-theme="eclipse"] {
+  --bg: #0d0d0d;
+  --card: #1a1a1a;
+  --text: #f0f0f0;
+  --text-light: #cccccc;
+  --primary: #ffd700;
+  --accent: #ffed4e;
+  --success: #ffd700;
+  --danger: #ff6347;
+}
+
+/* Cyber Matrix */
+:root[data-theme="matrix"] {
+  --bg: #0a0a0a;
+  --card: #0d1a0d;
+  --text: #00ff00;
+  --text-light: #00cc00;
+  --primary: #00ff00;
+  --accent: #00ff7f;
+  --success: #00ff00;
+  --danger: #ff3333;
+  font-family: 'Courier New', monospace;
+}
+
+/* School Notebook */
+:root[data-theme="notebook"] {
+  --bg: #f0f0f0;
+  --card: #ffffff;
+  --text: #2c3e50;
+  --text-light: #7f8c8d;
+  --primary: #3498db;
+  --accent: #2980b9;
+  --success: #27ae60;
+  --danger: #e74c3c;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 39px,
+    #ddd 39px,
+    #ddd 40px
+  );
+}
+
+/* Midnight Gaming */
+:root[data-theme="gaming"] {
+  --bg: #0a0a0a;
+  --card: #1a1a2e;
+  --text: #eaeaea;
+  --text-light: #cccccc;
+  --primary: #00d9ff;
+  --accent: #0099ff;
+  --success: #00ff88;
+  --danger: #ff3366;
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+/* Retro Pixel */
+:root[data-theme="pixel"] {
+  --bg: #ff0080;
+  --card: #ffff00;
+  --text: #000000;
+  --text-light: #333333;
+  --primary: #ff00ff;
+  --accent: #00ffff;
+  --success: #00ff00;
+  --danger: #ff0000;
+  font-family: 'Courier New', monospace;
+  image-rendering: pixelated;
+}
+
+/* Cloudy Day */
+:root[data-theme="cloudy"] {
+  --bg: #e8eef3;
+  --card: #f5f7fa;
+  --text: #3a4556;
+  --text-light: #7a8a9e;
+  --primary: #6c92b8;
+  --accent: #8ab3d9;
+  --success: #5a9d6f;
+  --danger: #d46a6a;
+  backdrop-filter: blur(10px);
+}
+
+/* Royal Academia */
+:root[data-theme="academia"] {
+  --bg: #1a1410;
+  --card: #3d3230;
+  --text: #f5e6d3;
+  --text-light: #d4c5b0;
+  --primary: #d4af37;
+  --accent: #c9a961;
+  --success: #a8860b;
+  --danger: #b83c3c;
+}
+
+/* Apply theme to body */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.card, .navbar, .sidebar {
+  background-color: var(--card);
+  color: var(--text);
+}
+
+button, input, select {
+  background-color: var(--card);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+button:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+a {
+  color: var(--primary);
+}
+
+a:hover {
+  color: var(--accent);
+}
