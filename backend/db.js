@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const db = new sqlite3.Database(path.join(__dirname, '../chat.db'));
+const db = new sqlite3.Database(path.join(__dirname, 'database.db'));
 
 // Initialize database tables
 db.serialize(() => {
