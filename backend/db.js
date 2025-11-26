@@ -4,6 +4,37 @@ const bcrypt = require('bcryptjs');
 
 const db = new sqlite3.Database(path.join(__dirname, 'database.db'));
 
+db.serialize(() => {
+  db.run(`CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE,
+    password TEXT,
+    profile_picture TEXT,
+    is_online INTEGER DEFAULT 0
+  )`);
+
+  db.run(`CREATE TABLE IF NOT EXISTS messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    channel_id INTEGER,
+    group_chat_id INTEGER,
+    user_id INTEGER,
+    content TEXT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+  )`);
+
+  db.run(`CREATE TABLE IF NOT EXISTS channels (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    description TEXT
+  )`);
+
+  db.run(`CREATE TABLE IF NOT EXISTS group_chats (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    members TEXT
+  )`);
+});
+
 // Initialize database tables
 db.serialize(() => {
   // Users table - with role, status, custom status
